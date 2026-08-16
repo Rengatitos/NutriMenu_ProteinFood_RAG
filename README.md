@@ -1,4 +1,4 @@
-# NutriMenú · Protein Food — Chatbot RAG con Ollama + Flask
+# NutriMenú · Protein Food — Chatbot RAG con Ollama + Flask (CORRER IPYNB EN notebooks\00_NutriMenu_RAG_Ollama.ipynb)
 
 Proyecto completo para ejecutar un chatbot local de recomendación del menú de **Protein Food** usando Python, Ollama, RAG híbrido, Flask y memoria persistente por sala de chat.
 
