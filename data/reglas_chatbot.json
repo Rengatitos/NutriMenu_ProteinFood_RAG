@@ -1,0 +1,127 @@
+[
+  {
+    "seccion": "Objetivo y alcance",
+    "tipo": "Regla",
+    "contenido": "Este documento transforma el menú proporcionado en una base de conocimiento utilizable por un chatbot de recomendación."
+  },
+  {
+    "seccion": "Objetivo y alcance",
+    "tipo": "Regla",
+    "contenido": "La recomendación principal se realiza por presupuesto de calorías para una comida, snack o bebida; adicionalmente puede considerar preferencia dulce/salada, nivel proteico, categoría y precio."
+  },
+  {
+    "seccion": "Objetivo y alcance",
+    "tipo": "Regla",
+    "contenido": "Los nombres, precios e ingredientes/descripciones provienen del menú compartido. Las calorías y el nivel proteico son estimaciones operativas creadas para habilitar el prototipo del chatbot."
+  },
+  {
+    "seccion": "Objetivo y alcance",
+    "tipo": "Advertencia",
+    "contenido": "Importante: el menú fuente no contiene calorías, macronutrientes ni tablas nutricionales oficiales. Por eso el chatbot debe decir “estimado” o “aprox.” y nunca presentar estos valores como información nutricional certificada."
+  },
+  {
+    "seccion": "Cómo interpretar las calorías",
+    "tipo": "Regla",
+    "contenido": "kcal mín.: escenario de porción/acompañamientos más ligeros dentro de lo descrito."
+  },
+  {
+    "seccion": "Cómo interpretar las calorías",
+    "tipo": "Regla",
+    "contenido": "kcal máx.: escenario más energético razonable para el mismo producto."
+  },
+  {
+    "seccion": "Cómo interpretar las calorías",
+    "tipo": "Regla",
+    "contenido": "kcal ref.: punto medio redondeado; sirve para ordenar y comparar opciones, no como cifra nutricional oficial."
+  },
+  {
+    "seccion": "Cómo interpretar las calorías",
+    "tipo": "Regla",
+    "contenido": "La incertidumbre es mayor en postres, salsas, cremas, toppings, helados, “a elección” y promociones porque no se indican gramajes."
+  },
+  {
+    "seccion": "Cómo interpretar las calorías",
+    "tipo": "Regla",
+    "contenido": "Cuando el usuario tenga un límite estricto, el bot debe priorizar productos cuyo kcal máx. quede por debajo del presupuesto."
+  },
+  {
+    "seccion": "Lógica de recomendación",
+    "tipo": "Paso",
+    "contenido": "1. Normalizar la intención: Detectar si el usuario habla de kcal disponibles para esta comida o de una meta diaria."
+  },
+  {
+    "seccion": "Lógica de recomendación",
+    "tipo": "Paso",
+    "contenido": "2. Aplicar exclusiones: Filtrar por alergias/ingredientes a evitar, categoría no deseada y precio máximo si se indicó."
+  },
+  {
+    "seccion": "Lógica de recomendación",
+    "tipo": "Paso",
+    "contenido": "3. Aplicar límite calórico: Modo conservador: kcal máx. ≤ presupuesto. Modo flexible: kcal ref. ≤ presupuesto y advertir si el rango puede superarlo."
+  },
+  {
+    "seccion": "Lógica de recomendación",
+    "tipo": "Paso",
+    "contenido": "4. Ordenar opciones: Priorizar cercanía al presupuesto sin excederlo, coincidencia dulce/salado y mayor nivel proteico si el usuario lo pidió."
+  },
+  {
+    "seccion": "Lógica de recomendación",
+    "tipo": "Paso",
+    "contenido": "5. Entregar 3 alternativas: Mostrar nombre, precio, kcal estimadas, por qué encaja y una advertencia corta sobre la estimación."
+  },
+  {
+    "seccion": "Lógica de recomendación",
+    "tipo": "Paso",
+    "contenido": "6. Ofrecer ajuste: Permitir “más barato”, “más proteico”, “más dulce”, “menos calorías”, “sin frutos secos”, etc."
+  },
+  {
+    "seccion": "Formato recomendado",
+    "tipo": "Plantilla",
+    "contenido": "Plantilla: “Con un presupuesto de [X] kcal, estas son mis mejores opciones del menú. Las calorías son aproximadas porque el menú no publica información nutricional oficial.”"
+  },
+  {
+    "seccion": "Seguridad y calidad",
+    "tipo": "Regla",
+    "contenido": "No afirmar que un producto tiene exactamente X kcal; usar rangos y la palabra “estimado/aproximado”."
+  },
+  {
+    "seccion": "Seguridad y calidad",
+    "tipo": "Regla",
+    "contenido": "No inferir que “proteico”, “light”, “sin azúcar” o “saludable” significa automáticamente bajo en calorías."
+  },
+  {
+    "seccion": "Seguridad y calidad",
+    "tipo": "Regla",
+    "contenido": "No garantizar que un producto sea apto para alergias o celiaquía. Las etiquetas de ingredientes se derivan solo del texto del menú y no contemplan contaminación cruzada."
+  },
+  {
+    "seccion": "Seguridad y calidad",
+    "tipo": "Regla",
+    "contenido": "Si el usuario comunica una condición médica o necesita una dieta clínica, limitarse a describir el menú y recomendar validación con un profesional de salud/nutrición."
+  },
+  {
+    "seccion": "Seguridad y calidad",
+    "tipo": "Regla",
+    "contenido": "Ante productos con frutas, toppings, salsas, leche “a elegir” o componentes variables, indicar que el total puede cambiar según la elección."
+  },
+  {
+    "seccion": "Próximo paso recomendado",
+    "tipo": "Acción",
+    "contenido": "Reemplazar las estimaciones por calorías y macronutrientes reales cuando el negocio disponga de fichas técnicas o recetas con gramajes."
+  },
+  {
+    "seccion": "Próximo paso recomendado",
+    "tipo": "Acción",
+    "contenido": "Convertir esta tabla a JSON/CSV para conectarla al chatbot o a una base vectorial/RAG."
+  },
+  {
+    "seccion": "Próximo paso recomendado",
+    "tipo": "Acción",
+    "contenido": "Crear pruebas automáticas con presupuestos de 150, 200, 300, 400, 500, 600 y 800 kcal para validar que nunca recomiende fuera del límite estricto."
+  },
+  {
+    "seccion": "Próximo paso recomendado",
+    "tipo": "Acción",
+    "contenido": "Agregar stock/disponibilidad si el menú cambia por sede u horario."
+  }
+]

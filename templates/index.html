@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#071018" />
+  <title>Clara · Protein Food</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-card">
+        <div class="pf-mark" aria-label="Protein Food">
+          <div class="pf-icon">PF</div>
+          <div class="pf-name">PROTEIN<span>FOOD</span></div>
+        </div>
+      </div>
+
+      <button class="new-chat" id="newChatBtn" type="button">
+        <span class="plus">＋</span> Nueva conversación
+      </button>
+
+      <div class="sidebar-heading">Mis conversaciones</div>
+      <div class="room-list" id="roomList"></div>
+
+      <div class="important-card">
+        <div class="shield">◇</div>
+        <div>
+          <strong>Aviso importante</strong>
+          <p>Las kcal son aproximadas. Para alergias, condiciones médicas o un plan individual, valida la información con un profesional.</p>
+        </div>
+      </div>
+    </aside>
+
+    <section class="main-panel">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenuBtn" aria-label="Abrir menú">☰</button>
+        <div class="assistant-brand">
+          <a class="bot-logo" href="{{ url_for('index') }}" aria-label="Volver al inicio">
+            <span class="antenna"></span><span class="bot-face">● ●</span>
+          </a>
+          <div>
+            <h1>Clara</h1>
+            <p>Asistente de alimentación inteligente con RAG · <b>Protein Food</b></p>
+          </div>
+        </div>
+        <div class="quick-actions">
+          <button class="kcal-chip" data-prompt="Quiero un postre de entre 251 y 450 kcal aprox. Recomiéndame hasta 3 opciones del menú y dime sus kcal estimadas.">Postre</button>
+          <button class="kcal-chip" data-prompt="Quiero un almuerzo contundente de entre 551 y 700 kcal aprox. Recomiéndame hasta 3 platos, wraps o sándwiches del menú.">Almuerzo</button>
+          <button class="kcal-chip" data-prompt="Quiero una comida completa de entre 451 y 550 kcal aprox. Recomiéndame hasta 3 platos, sándwiches o ensaladas del menú.">Comida completa</button>
+          <button class="reset-btn" id="resetBtn">↻ Reiniciar contexto</button>
+          <button class="reset-btn" id="finishBtn">Finalizar y valorar</button>
+        </div>
+      </header>
+
+      <main class="conversation-wrap">
+        <div class="messages" id="messages" aria-live="polite"></div>
+
+        <form class="composer" id="composer">
+          <input id="messageInput" autocomplete="off" placeholder="Escribe tu mensaje aquí…" aria-label="Mensaje" />
+          <button type="submit" id="sendBtn" aria-label="Enviar">➤</button>
+        </form>
+        <div class="status-line" id="statusLine">Conectando con el proyecto local…</div>
+      </main>
+    </section>
+  </div>
+
+  <template id="productCardTemplate">
+    <article class="product-card">
+      <div class="product-media">
+        <img class="product-img" alt="" />
+        <span class="kcal-badge"></span>
+      </div>
+      <div class="product-body">
+        <h3 class="product-name"></h3>
+        <p class="product-desc"></p>
+        <div class="product-meta">
+          <span class="product-price"></span>
+          <span class="protein-pill"></span>
+        </div>
+        <div class="product-alert"></div>
+      </div>
+    </article>
+  </template>
+
+  <dialog id="cxDialog" class="cx-dialog">
+    <form id="cxForm" method="dialog">
+      <button class="dialog-close" value="cancel" aria-label="Cerrar">×</button>
+      <h2>Valora esta conversación</h2>
+      <label>Satisfacción con la atención (1–5)<input id="cxSatisfaction" type="number" min="1" max="5" required></label>
+      <label>¿Qué tan probable es que recomiendes a Clara? (0–10)<input id="cxNps" type="number" min="0" max="10" required></label>
+      <label>¿Tu consulta quedó resuelta?<select id="cxResolved" required><option value="true">Sí</option><option value="false">No</option></select></label>
+      <label>Comentario opcional<textarea id="cxComment" maxlength="2000" rows="4"></textarea></label>
+      <button class="dialog-submit" type="submit">Guardar valoración</button>
+    </form>
+  </dialog>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
